@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarChat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <!-- Écran d'authentification -->
+    <div id="auth-screen">
+        <div class="auth-container">
+            <div class="logo">
+                <i class="fas fa-comment-dots"></i>
+                <span>MarChat</span>
+            </div>
+            
+            <h1>Entrez votre numéro</h1>
+            <p class="subtitle">Nous enverrons un code de vérification</p>
+            
+            <div class="phone-input-container">
+                <div class="country-selector">
+                    <input type="text" id="country-search" placeholder="Rechercher un pays">
+                    <select id="country-code" size="5"></select>
+                </div>
+                <div class="phone-input">
+                    <input type="text" id="country-code-input" value="+225">
+                    <input type="tel" id="phone" placeholder="0102030405" autofocus>
+                </div>
+            </div>
+            
+            <div id="recaptcha-container"></div>
+            <div id="error-message" class="error"></div>
+            
+            <button id="send-otp" class="btn-gold">
+                <span id="btn-text">Suivant</span>
+                <i id="spinner" class="fas fa-spinner fa-spin hidden"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Écran de vérification OTP -->
+    <div id="otp-screen" class="hidden">
+        <div class="otp-container">
+            <h2>Vérification du numéro</h2>
+            <p>Entrez le code à 6 chiffres envoyé au <br><span id="user-phone-display"></span></p>
+            
+            <div class="otp-inputs">
+                <input type="text" maxlength="1" class="otp-digit" data-index="0" autofocus>
+                <input type="text" maxlength="1" class="otp-digit" data-index="1">
+                <input type="text" maxlength="1" class="otp-digit" data-index="2">
+                <input type="text" maxlength="1" class="otp-digit" data-index="3">
+                <input type="text" maxlength="1" class="otp-digit" data-index="4">
+                <input type="text" maxlength="1" class="otp-digit" data-index="5">
+            </div>
+            
+            <button id="verify-otp" class="btn-gold">
+                <span id="verify-text">Vérifier</span>
+                <i id="verify-spinner" class="fas fa-spinner fa-spin hidden"></i>
+            </button>
+            <p class="resend-text">Vous n'avez pas reçu de code ? <a href="#" id="resend-otp">Renvoyer</a></p>
+        </div>
+    </div>
+
+    <!-- Écran de chat -->
+    <div id="chat-screen" class="hidden">
+        <header>
+            <div class="user-avatar" id="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <h3>MarChat</h3>
+            <button id="logout-btn"><i class="fas fa-sign-out-alt"></i></button>
+        </header>
+        
+        <div class="chat-container" id="chat-container">
+            <!-- Messages apparaîtront ici -->
+        </div>
+        
+        <div class="message-input-container">
+            <button id="attach-btn"><i class="fas fa-paperclip"></i></button>
+            <input type="text" id="message-input" placeholder="Écrivez un message...">
+            <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
